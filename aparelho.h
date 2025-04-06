@@ -12,7 +12,7 @@ private:
     int imei_2;
     std::string modelo;
     std::string marca;
-    int memoria; 
+    int memoria; // shaushuashuahs
 
 public:
 
