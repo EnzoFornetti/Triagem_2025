@@ -1,4 +1,4 @@
-#include "aparelho.h"
+#include "Aparelho.h"
 
 Aparelho::Aparelho(int imei1, int imei2, std::string modelo, std::string marca, int memoria) {
     this->imei_1 = imei1;
