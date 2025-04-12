@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void teste(){
+void teste1(){
 
     PersistenciaAparelho *p = new PersistenciaAparelho("teste_salvar.txt");
 
@@ -14,5 +14,11 @@ void teste(){
 
     p->salvar(*a1);
     p->salvar(*a2);
+
+}
+
+void teste2(){
+
+    
 
 }
