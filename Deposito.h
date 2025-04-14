@@ -13,14 +13,14 @@ class Deposito
 private:
     string nomeDeposito;
     int quantidade;
-    list<Aparelho> *aparelhos;
+    Aparelho** aparelhos;
 
 public:
     Deposito(string nome);
     string getNomeDeposito();
     void setNomeDeposito(string nome);
 
-    bool salvar(Aparelho &aparelho);
+    bool salvar(Aparelho *aparelho);
     void printarDeposito();
 };
 

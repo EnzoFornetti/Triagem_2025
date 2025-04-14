@@ -9,7 +9,7 @@ Deposito::Deposito(string nome)
 {
     this->nomeDeposito = nome;
     quantidade = 0;
-    aparelhos = new list<Aparelho>();
+    aparelhos = new Aparelho*[100];
 }
 
 string Deposito::getNomeDeposito()
@@ -22,9 +22,9 @@ void Deposito::setNomeDeposito(string nome)
     nomeDeposito = nome;
 }
 
-bool Deposito::salvar(Aparelho &aparelho)
+bool Deposito::salvar(Aparelho *aparelho)
 {
-    aparelhos->push_back(aparelho);
+    aparelhos[quantidade] = aparelho;
 
     quantidade++;
 
@@ -36,9 +36,16 @@ void Deposito::printarDeposito()
 
     cout << this->getNomeDeposito() << endl << endl;
 
+    if (quantidade == 0)
+    {
+        cout << "Nenhum aparelho no depósito." << endl;
+        return;
+    }
+
     for (int x = 0; x < quantidade; x++)
     {
-        cout << aparelhos[x]->printarDados() << endl;
+        aparelhos[x]->printarDados();
+        cout << "----------------" << endl << endl;
     }
 
     cout << endl;

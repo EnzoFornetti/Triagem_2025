@@ -21,6 +21,7 @@ public:
 
     void printarDados();
     Aparelho(int imei_1, int imei_2, string modelo, string marca, int memoria);
+    Aparelho();
 
     void setImei1(int imei_1);
     int getImei1();
