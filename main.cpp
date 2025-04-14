@@ -1,10 +1,10 @@
 void teste1();
 void teste2();
 
-int main(){
+int main()
+{
 
-    teste1(); //aa
+    teste1();
 
     return 0;
-
 }

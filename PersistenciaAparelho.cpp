@@ -2,15 +2,21 @@
 #include <fstream>
 #include <stdexcept>
 
-PersistenciaAparelho::PersistenciaAparelho(std::string nomeArquivo) {
+#include <string>
+
+PersistenciaAparelho::PersistenciaAparelho(std::string nomeArquivo)
+{
     this->nomeArquivo = nomeArquivo;
 }
 
-void PersistenciaAparelho::salvar(Aparelho& aparelho) {
+bool PersistenciaAparelho::salvar(Aparelho &aparelho)
+{
     std::ofstream arquivo(nomeArquivo, std::ios::app); // modo append
 
-    if (!arquivo.is_open()) {
+    if (!arquivo.is_open())
+    {
         throw std::runtime_error("Erro ao abrir o arquivo para salvar.");
+        return false;
     }
 
     arquivo << aparelho.getImei1() << std::endl;
@@ -21,29 +27,40 @@ void PersistenciaAparelho::salvar(Aparelho& aparelho) {
     arquivo << "---" << std::endl; // separador entre aparelhos
 
     arquivo.close();
+    return true;
 }
 
-
-Aparelho PersistenciaAparelho::carregar() {
-
+Aparelho *PersistenciaAparelho::carregar(int n)
+{
     std::ifstream arquivo(nomeArquivo);
 
-    if (!arquivo.is_open()) {
+    if (!arquivo.is_open())
+    {
         throw std::runtime_error("Erro ao abrir o arquivo para carregar.");
     }
 
     int imei1, imei2, memoria;
     std::string modelo, marca;
+    std::string linhaSeparadora;
 
-    arquivo >> imei1;
-    arquivo >> imei2;
-    arquivo.ignore(); // Pular o '\n' antes das strings
-    std::getline(arquivo, modelo);
-    std::getline(arquivo, marca);
-    arquivo >> memoria;
+    while (arquivo >> imei1)
+    {
+        arquivo >> imei2;
+        arquivo.ignore(); // Limpar o '\n' depois dos ints
+        std::getline(arquivo, modelo);
+        std::getline(arquivo, marca);
+        arquivo >> memoria;
+        std::getline(arquivo, linhaSeparadora); // ler o '\n' após memoria
+        std::getline(arquivo, linhaSeparadora); // ler "---"
+
+        // Comparar com o IMEI desejado
+        if (imei1 == n)
+        {
+            arquivo.close();
+            return new Aparelho(imei1, imei2, modelo, marca, memoria);
+        }
+    }
 
     arquivo.close();
-
-    return Aparelho(imei1, imei2, modelo, marca, memoria);
-
+    throw std::runtime_error("Aparelho com o IMEI informado nao encontrado.");
 }

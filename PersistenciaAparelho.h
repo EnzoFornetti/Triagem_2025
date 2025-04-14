@@ -5,15 +5,16 @@
 #include <fstream>
 #include <string>
 
-class PersistenciaAparelho {
+class PersistenciaAparelho
+{
 private:
     std::string nomeArquivo;
 
 public:
     PersistenciaAparelho(std::string nomeArquivo);
 
-    void salvar(Aparelho &aparelho);
-    Aparelho carregar();
+    bool salvar(Aparelho &aparelho);
+    Aparelho *carregar(int n);
 };
 
 #endif

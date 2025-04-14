@@ -1,11 +1,14 @@
 #include "Aparelho.h"
 
-Aparelho::Aparelho(int imei1, int imei2, std::string modelo, std::string marca, int memoria) {
+using namespace std;
+
+Aparelho::Aparelho(int imei1, int imei2, string modelo, string marca, int memoria) {
     this->imei_1 = imei1;
     this->imei_2 = imei2;
     this->modelo = modelo;
     this->marca = marca;
     this->memoria = memoria;
+    this->deposito = 0;
 }
 
 void Aparelho::setImei1(int imei_1) {
@@ -24,19 +27,19 @@ int Aparelho::getImei2() {
     return imei_2;
 }
 
-void Aparelho::setModelo(std::string modelo) {
+void Aparelho::setModelo(string modelo) {
     this->modelo = modelo;
 }
 
-std::string Aparelho::getModelo() {
+string Aparelho::getModelo() {
     return modelo;
 }
 
-void Aparelho::setMarca(std::string marca) {
+void Aparelho::setMarca(string marca) {
     this->marca = marca;
 }
 
-std::string Aparelho::getMarca() {
+string Aparelho::getMarca() {
     return marca;
 }
 
@@ -50,11 +53,11 @@ int Aparelho::getMemoria() {
 
 void Aparelho::printarDados() {
 
-    std::cout << "===== DADOS DO APARELHO =====" << std::endl;
-    std::cout << "Marca: " << marca << std::endl;
-    std::cout << "Modelo: " << modelo << std::endl;
-    std::cout << "IMEI 1: " << imei_1 << std::endl;
-    std::cout << "IMEI 2: " << imei_2 << std::endl;
-    std::cout << "Memoria: " << memoria << " GB" << std::endl;
+    cout << "===== DADOS DO APARELHO =====" << endl;
+    cout << "Marca: " << marca << endl;
+    cout << "Modelo: " << modelo << endl;
+    cout << "IMEI 1: " << imei_1 << endl;
+    cout << "IMEI 2: " << imei_2 << endl;
+    cout << "Memoria: " << memoria << " GB" << endl;
 
 }
